@@ -56,6 +56,8 @@ public class ControleEstoque {
             }
 
         } while (menu != 5);
+        
+        System.out.println("PARAAAAAAAAAAAAAAAAAAAAR");
     }
 
     public void imprimeEstoque() {
