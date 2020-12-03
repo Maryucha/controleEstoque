@@ -16,8 +16,10 @@ public class ControleEstoque {
     Estoque produto = new Estoque();
     Scanner entrada = new Scanner(System.in);
     Integer menu = 0;
+    PopularEstoque carrregamento = new PopularEstoque();
+    CalcularValorEstoque calculadora = new CalcularValorEstoque();
 
-    public void controle() {
+    public void controle() throws InterruptedException {
         do {
             try {
                 System.out.println("============MENU PRINCIPAL============="
@@ -25,8 +27,10 @@ public class ControleEstoque {
                         + "\n2 Mostrar Produtos: "
                         + "\n3 Editar Produto: "
                         + "\n4 Excluir produto: "
-                        + "\n5 Sair: "
-                        + "\n====================================");
+                        + "\n5 Popular Automático: "
+                        + "\n6 Criar Lista de Valor do Estoque: "
+                        + "\n7 Sair: "
+                        + "\n===============================================");
                 menu = entrada.nextInt();
                 entrada.nextLine();
             } catch (HeadlessException | NumberFormatException e) {
@@ -47,15 +51,21 @@ public class ControleEstoque {
                         removeProduto();
                         break;
                     case 5:
-                        System.out.println("Até logo!");
+                        listaProdutos=carrregamento.cargaPorScanner();
                         break;
+                    case 6:
+                        calculadora.salvaListaValorEstoque(listaProdutos);
+                        break;    
+                    case 7:
+                        System.out.println("Até logo!");
+                        break;    
                     default:
                         System.out.println("Escolha uma opção válida!");
                         break;
                 }
             }
 
-        } while (menu != 5);
+        } while (menu != 7);
 
         System.out.println("-------------------------------------------------");
 
@@ -73,10 +83,9 @@ public class ControleEstoque {
     }
 
     public void editaListaProdutos() {
-        int id = 0;
-        System.out.println("-----------MENU EDITAR---------");
+        System.out.println("-----------EDITAR---------");
         System.out.print("Digite o ID do produto que deseja editar: ");
-        id = entrada.nextInt();
+        int id = entrada.nextInt();
         for (int i = 0; i < listaProdutos.size(); i++) {
             if (listaProdutos.get(i).getId() == id) {
                 listaProdutos.get(i).editarProduto();
@@ -89,14 +98,13 @@ public class ControleEstoque {
     }
 
     public void removeProduto() {
-        int id = 0;
-        System.out.println("-----------MENU EDITAR---------");
+        System.out.println("-----------REMOVER---------");
         System.out.print("Digite o ID do produto que deseja Excluir: ");
-        id = entrada.nextInt();
+        int id = entrada.nextInt();
         for (int i = 0; i < listaProdutos.size(); i++) {
             if (listaProdutos.get(i).getId() == id) {
                 listaProdutos.remove(i);
-                System.out.println("Produto removido com sucesso!");
+                System.out.println("Produto Removido com sucesso!");
             } else {
                 System.out.println("Produto não encontrado!");
             }

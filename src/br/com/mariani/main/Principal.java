@@ -1,10 +1,7 @@
 package br.com.mariani.main;
 
 import br.com.mariani.controle.ControleEstoque;
-import br.com.mariani.modelo.Estoque;
-import java.awt.HeadlessException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  *
@@ -12,7 +9,7 @@ import java.util.List;
  */
 public class Principal {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         ControleEstoque controle = new ControleEstoque();
         controle.controle();
