@@ -18,12 +18,12 @@ public class CalcularValorEstoque {
         String path = "D:\\Cursos\\SENAI\\VOID\\controleEstoque\\desenv\\valorEstoque.txt";
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {  // abre o arquivo
-            for (Estoque linhaProdutos : lista) {
-                bw.write("NOME: " + linhaProdutos.getNome()
-                        + "\nVALOR: " + linhaProdutos.getValor()
-                        + "\nQUANTIDADE: " + linhaProdutos.getQtdProduto()
-                        + "\nVALOR ESTOQUE: " + (linhaProdutos.getValor() * linhaProdutos.getQtdProduto()));
-                bw.newLine();
+            for (Estoque linhaProdutos : lista) {                
+//                bw.write("NOME: " + linhaProdutos.getNome()
+//                        + "\nVALOR: " + linhaProdutos.getValor()
+//                        + "\nQUANTIDADE: " + linhaProdutos.getQtdProduto()
+//                        + "\nVALOR ESTOQUE: " + (linhaProdutos.getValor() * linhaProdutos.getQtdProduto()));
+//                bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
