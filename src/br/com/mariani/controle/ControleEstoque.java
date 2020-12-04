@@ -16,12 +16,10 @@ import java.util.Scanner;
  */
 public class ControleEstoque {
 
-    List<Estoque> listaProdutos = new ArrayList<Estoque>();
-    Estoque produto = new Estoque();
-    Scanner entrada = new Scanner(System.in);
-    Integer menu = 0;
-    PopularEstoque carrregamento = new PopularEstoque();
-    CalcularValorEstoque calculadora = new CalcularValorEstoque();
+    static List<Estoque> listaProdutos = new ArrayList<Estoque>();
+    static Estoque produto = new Estoque();
+    private Scanner entrada = new Scanner(System.in);
+    private Integer menu = 0;
 
     public void controle() throws InterruptedException {
         do {
@@ -59,7 +57,6 @@ public class ControleEstoque {
                         break;
                     case 6:
                         descarregarNoDocumento(listaProdutos);
-                        //calculadora.salvaListaValorEstoque(listaProdutos);
                         break;
                     case 7:
                         System.out.println("Até logo!");

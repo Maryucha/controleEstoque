@@ -1,4 +1,4 @@
-package br.com.mariani.main;
+package br.com.mariani.controle;
 
 import br.com.mariani.controle.ControleEstoque;
 
