@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 /**
  *
  * @author maryucha
@@ -20,8 +25,22 @@ public class ControleEstoque {
     static Estoque produto = new Estoque();
     private Scanner entrada = new Scanner(System.in);
     private Integer menu = 0;
+    
+     JSONParser jsonParser = new JSONParser();
 
-    public void controle() throws InterruptedException {
+        String StringJson = ControleEstoque.carregarListaProdutoJSONSTRING();
+
+        
+
+    public void controle() throws InterruptedException, ParseException {
+
+        JSONParser jsonParser = new JSONParser();
+
+        String StringJson = ControleEstoque.carregarListaProdutoJSONSTRING();
+
+        JSONArray jobj = (JSONArray) jsonParser.parse(StringJson);
+
+      
         do {
             try {
                 System.out.println("============MENU PRINCIPAL============="
@@ -31,7 +50,9 @@ public class ControleEstoque {
                         + "\n4 Excluir produto: "
                         + "\n5 Popular Automático: "
                         + "\n6 Criar Lista de Valor do Estoque: "
-                        + "\n7 Sair: "
+                        + "\n7 Ler arquivo Json: "
+                        + "\n8 Popular lista de produtos pelo JsonJson: "
+                        + "\n9 Sair: "
                         + "\n===============================================");
                 menu = entrada.nextInt();
                 entrada.nextLine();
@@ -59,15 +80,21 @@ public class ControleEstoque {
                         descarregarNoDocumento(listaProdutos);
                         break;
                     case 7:
-                        System.out.println("Até logo!");
+                        carregarListaProdutoJSONSTRING();
                         break;
+                    case 8:
+                        popularListaProdutosTirandoDoJson();
+                        break;
+                    case 9:
+                        System.out.println("Até logo!");
+                        break;    
                     default:
                         System.out.println("Escolha uma opção válida!");
                         break;
                 }
             }
 
-        } while (menu != 7);
+        } while (menu != 9);
 
         System.out.println("-------------------------------------------------");
 
@@ -169,5 +196,44 @@ public class ControleEstoque {
         }
         return listaProdutos;
     }
-}
 
+    public static String carregarListaProdutoJSONSTRING() {
+        File file = new File("D:\\Cursos\\SENAI\\VOID\\controleEstoque\\desenv\\produtos.json");
+        Scanner sc = null;
+        String aux = "";
+        try {
+            sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+
+                aux += sc.nextLine();
+
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            if (sc != null) {
+                sc.close();
+            }
+        }
+        return aux;
+    }
+    
+    public void popularListaProdutosTirandoDoJson() throws ParseException{
+        
+        JSONArray jsonArray = (JSONArray) jsonParser.parse(StringJson);
+        
+              
+      for(int i=0;i<jsonArray.size();i++){
+          Estoque e = new Estoque(); 
+          JSONObject objetoJson = (JSONObject) jsonArray.get(i);
+          e.setId(i);
+          e.setNome(objetoJson.get("nome").toString());
+          e.setValor(Double.parseDouble(objetoJson.get("preco").toString()));
+          e.setQtdProduto(Integer.parseInt(objetoJson.get("quantidade").toString())); 
+          listaProdutos.add(e);
+      }
+      
+      //System.out.println(jsonArray.toString());
+    }
+
+}

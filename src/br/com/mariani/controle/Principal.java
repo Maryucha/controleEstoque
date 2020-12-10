@@ -1,6 +1,8 @@
 package br.com.mariani.controle;
 
 import br.com.mariani.controle.ControleEstoque;
+import jdk.nashorn.internal.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 /**
@@ -9,7 +11,7 @@ import br.com.mariani.controle.ControleEstoque;
  */
 public class Principal {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ParseException {
 
         ControleEstoque controle = new ControleEstoque();
         controle.controle();

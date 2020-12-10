@@ -1,0 +1,21 @@
+[{
+        "nome": "tv-Sharp",
+        "preco": 1299.87,
+        "quantidade": 2
+    },
+    {
+        "nome": "video game",
+        "preco": 4579.87,
+        "quantidade": 1
+    },
+    {
+        "nome": "smart Phone",
+        "preco": 5111.87,
+        "quantidade": 2
+    },
+    {
+        "nome": "xaiomi",
+        "preco": 2540.87,
+        "quantidade": 2
+    }
+]
